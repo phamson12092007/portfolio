@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio cá nhân của Phạm Ngọc Sơn - Sinh viên Công nghệ thông tin. Môn Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo." />
+    <meta name="author" content="Phạm Ngọc Sơn" />
+    <meta name="keywords" content="Portfolio, Phạm Ngọc Sơn, CNTT, AI, Công nghệ số" />
+    <meta property="og:title" content="Phạm Ngọc Sơn — Portfolio" />
+    <meta property="og:description" content="Portfolio môn Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo" />
+    <meta property="og:type" content="website" />
+    <title>Phạm Ngọc Sơn — Portfolio CNTT & AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        /* ============ Variables ============ */
+        :root {
+          --green: #16a34a;
+          --green-light: #22c55e;
+          --white: #ffffff;
+          --dark: #0f172a;
+
+          --bg: #f8fafc;
+          --bg-alt: #ffffff;
+          --text: #0f172a;
+          --text-muted: #475569;
+          --border: rgba(15, 23, 42, 0.08);
+
+          --glass-bg: rgba(255, 255, 255, 0.55);
+          --glass-border: rgba(255, 255, 255, 0.6);
+          --glass-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+
+          --gradient: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+          --gradient-bg: radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.18), transparent 50%),
+                         radial-gradient(circle at 80% 60%, rgba(22, 163, 74, 0.18), transparent 50%);
+
+          --radius: 16px;
+          --radius-sm: 10px;
+          --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+          --font-display: 'Poppins', sans-serif;
+          --font-body: 'Inter', sans-serif;
+        }
+
+        [data-theme="dark"] {
+          --bg: #0f172a;
+          --bg-alt: #111c33;
+          --text: #f1f5f9;
+          --text-muted: #94a3b8;
+          --border: rgba(255, 255, 255, 0.08);
+          --glass-bg: rgba(255, 255, 255, 0.05);
+          --glass-border: rgba(255, 255, 255, 0.12);
+          --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+          --gradient-bg: radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.25), transparent 50%),
+                         radial-gradient(circle at 80% 60%, rgba(22, 163, 74, 0.18), transparent 50%);
+        }
+
+        /* ============ Reset ============ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body {
+          font-family: var(--font-body);
+          background: var(--bg);
+          color: var(--text);
+          line-height: 1.6;
+          overflow-x: hidden;
+          transition: background 0.3s ease, color 0.3s ease;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        ul { list-style: none; }
+        h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; }
+
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+        /* ============ Scroll Progress ============ */
+        .scroll-progress {
+          position: fixed; top: 0; left: 0;
+          height: 3px; width: 0;
+          background: var(--gradient);
+          z-index: 1000;
+          transition: width 0.1s ease;
+        }
+
+        /* ============ Navbar ============ */
+        .navbar {
+          position: fixed; top: 0; left: 0; right: 0;
+          z-index: 100;
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          background: var(--glass-bg);
+          border-bottom: 1px solid var(--glass-border);
+          transition: all 0.3s ease;
+        }
+        .navbar.scrolled { box-shadow: var(--glass-shadow); }
+        .nav-inner {
+          display: flex; align-items: center; justify-content: space-between;
+          height: 72px;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+        .logo-mark {
+          width: 38px; height: 38px;
+          display: grid; place-items: center;
+          background: var(--gradient);
+          color: #fff;
+          border-radius: 10px;
+          font-family: var(--font-display);
+          font-weight: 800;
+          box-shadow: 0 4px 14px rgba(22,163,74,0.4);
+        }
+        .logo-text { font-family: var(--font-display); font-size: 1rem; }
+
+        .nav-links { display: flex; gap: 6px; align-items: center; }
+        .nav-link {
+          padding: 8px 14px;
+          font-size: 0.92rem;
+          font-weight: 500;
+          border-radius: 8px;
+          color: var(--text-muted);
+          transition: all 0.2s ease;
+          position: relative;
+        }
+        .nav-link:hover { color: var(--green); }
+        .nav-link.active {
+          color: var(--green);
+          background: rgba(34, 197, 94, 0.1);
+        }
+
+        .nav-actions { display: flex; gap: 8px; align-items: center; }
+        .icon-btn {
+          width: 40px; height: 40px;
+          border-radius: 10px;
+          border: 1px solid var(--border);
+          background: var(--glass-bg);
+          color: var(--text);
+          cursor: pointer;
+          display: grid; place-items: center;
+          transition: all 0.2s ease;
+        }
+        .icon-btn:hover { color: var(--green); transform: translateY(-2px); }
+        .menu-btn { display: none; }
+
+        /* ============ Hero ============ */
+        .hero {
+          position: relative;
+          min-height: 100vh;
+          display: grid; place-items: center;
+          padding: 100px 0 60px;
+          overflow: hidden;
+        }
+        .hero-bg {
+          position: absolute; inset: 0;
+          background: var(--gradient-bg);
+          z-index: -1;
+        }
+        .hero-inner { text-align: center; padding: 0 24px; }
+
+        .avatar {
+          width: 160px; height: 160px;
+          margin: 0 auto 28px;
+          position: relative;
+          animation: float 4s ease-in-out infinite;
+        }
+        .avatar img {
+          width: 100%; height: 100%;
+          border-radius: 50%;
+          border: 4px solid var(--white);
+          box-shadow: 0 10px 40px rgba(22, 163, 74, 0.35);
+          position: relative; z-index: 1;
+        }
+        .avatar-ring {
+          position: absolute; inset: -8px;
+          border-radius: 50%;
+          background: var(--gradient);
+          filter: blur(20px);
+          opacity: 0.6;
+          animation: pulse-ring 3s ease-in-out infinite;
+        }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse-ring { 0%,100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.05); } }
+
+        .hero-title {
+          font-size: clamp(2.4rem, 6vw, 4.2rem);
+          font-weight: 800;
+          background: var(--gradient);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          letter-spacing: -0.02em;
+          margin-bottom: 12px;
+        }
+        .hero-sub { font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--text); font-weight: 600; margin-bottom: 6px; }
+        .hero-desc { font-size: 1rem; color: var(--text-muted); margin-bottom: 36px; max-width: 600px; margin-left:auto; margin-right:auto; }
+
+        .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+        .btn {
+          display: inline-flex; align-items: center; gap: 10px;
+          padding: 14px 28px;
+          border-radius: 12px;
+          font-weight: 600;
+          font-size: 0.95rem;
+          cursor: pointer; border: none;
+          transition: all 0.25s ease;
+          font-family: var(--font-body);
+        }
+        .btn-primary {
+          background: var(--gradient);
+          color: #fff;
+          box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.5); }
+        .btn-ghost {
+          background: var(--glass-bg);
+          color: var(--text);
+          border: 1px solid var(--glass-border);
+          backdrop-filter: blur(10px);
+        }
+        .btn-ghost:hover { transform: translateY(-3px); color: var(--green); border-color: var(--green); }
+
+        .hero-scroll-hint {
+          position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+          width: 24px; height: 40px;
+          border: 2px solid var(--text-muted);
+          border-radius: 12px;
+          display: grid; place-items: center;
+        }
+        .hero-scroll-hint span {
+          width: 4px; height: 8px;
+          background: var(--green);
+          border-radius: 2px;
+          animation: scroll-dot 1.6s ease infinite;
+        }
+        @keyframes scroll-dot { 0% { transform: translateY(-8px); opacity:0; } 50% { opacity:1; } 100% { transform: translateY(8px); opacity:0; } }
+
+        /* ============ Sections ============ */
+        .section { padding: 100px 0; position: relative; }
+        .section-alt { background: var(--bg-alt); }
+        .section-title {
+          font-size: clamp(1.8rem, 4vw, 2.6rem);
+          font-weight: 700;
+          text-align: center;
+          margin-bottom: 8px;
+        }
+        .section-title::after {
+          content: '';
+          display: block;
+          width: 60px; height: 4px;
+          background: var(--gradient);
+          border-radius: 2px;
+          margin: 14px auto 0;
+        }
+        .section-sub { text-align: center; color: var(--text-muted); margin-bottom: 56px; }
+
+        /* ============ Glass ============ */
+        .glass {
+          background: var(--glass-bg);
+          border: 1px solid var(--glass-border);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          box-shadow: var(--glass-shadow);
+          border-radius: var(--radius);
+        }
+
+        /* ============ About ============ */
+        .about-grid, .summary-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 22px;
+        }
+        .card { padding: 28px; transition: all 0.3s ease; }
+        .card:hover { transform: translateY(-6px); border-color: var(--green); }
+        .card-icon {
+          width: 52px; height: 52px;
+          display: grid; place-items: center;
+          background: var(--gradient);
+          border-radius: 12px;
+          color: #fff; font-size: 1.3rem;
+          margin-bottom: 16px;
+          box-shadow: 0 6px 18px rgba(22,163,74,0.3);
+        }
+        .card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+        .card p, .card li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 6px; }
+        .card li::before { content: '✓ '; color: var(--green); font-weight: 700; }
+
+        /* ============ Timeline ============ */
+        .timeline { position: relative; padding-left: 30px; max-width: 900px; margin: 0 auto; }
+        .timeline::before {
+          content: '';
+          position: absolute; left: 14px; top: 0; bottom: 0;
+          width: 2px;
+          background: linear-gradient(to bottom, var(--green), var(--green-light));
+          opacity: 0.4;
+        }
+        .timeline-item { position: relative; margin-bottom: 32px; }
+        .timeline-dot {
+          position: absolute; left: -30px; top: 18px;
+          width: 36px; height: 36px;
+          background: var(--gradient);
+          color: #fff;
+          border-radius: 50%;
+          display: grid; place-items: center;
+          font-weight: 700;
+          font-family: var(--font-display);
+          box-shadow: 0 4px 14px rgba(22,163,74,0.4);
+          border: 4px solid var(--bg-alt);
+        }
+        .timeline-card { padding: 24px 28px; margin-left: 20px; transition: all 0.3s ease; }
+        .timeline-card:hover { transform: translateX(6px); border-color: var(--green); }
+        .timeline-card h3 { color: var(--green); font-size: 1.15rem; margin-bottom: 12px; }
+        .timeline-card p { font-size: 0.93rem; color: var(--text-muted); margin-bottom: 6px; }
+        .timeline-card p strong { color: var(--text); }
+        .btn-link {
+          display: inline-flex; align-items: center; gap: 6px;
+          margin-top: 14px;
+          padding: 8px 16px;
+          background: rgba(34,197,94,0.1);
+          color: var(--green);
+          border-radius: 8px;
+          font-size: 0.88rem;
+          font-weight: 600;
+          transition: all 0.2s ease;
+        }
+        .btn-link:hover { background: var(--green); color: #fff; }
+
+        /* ============ Skills ============ */
+        .skills-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 24px;
+          max-width: 900px; margin: 0 auto;
+        }
+        .skill {
+          padding: 20px 24px;
+          background: var(--glass-bg);
+          border: 1px solid var(--glass-border);
+          border-radius: var(--radius-sm);
+          backdrop-filter: blur(10px);
+        }
+        .skill-head { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 600; font-size: 0.95rem; }
+        .skill-pct { color: var(--green); }
+        .skill-bar {
+          height: 8px;
+          background: rgba(15,23,42,0.08);
+          border-radius: 4px;
+          overflow: hidden;
+        }
+        [data-theme="dark"] .skill-bar { background: rgba(255,255,255,0.08); }
+        .skill-fill {
+          height: 100%; width: 0;
+          background: var(--gradient);
+          border-radius: 4px;
+          transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ============ Project ============ */
+        .project {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0;
+          overflow: hidden;
+          max-width: 1000px; margin: 0 auto;
+        }
+        .project-image { position: relative; min-height: 320px; }
+        .project-image img { width: 100%; height: 100%; object-fit: cover; }
+        .fullscreen-btn {
+          position: absolute; bottom: 16px; right: 16px;
+          width: 44px; height: 44px;
+          border-radius: 10px;
+          background: rgba(0,0,0,0.6);
+          color: #fff; border: none; cursor: pointer;
+          display: grid; place-items: center;
+          backdrop-filter: blur(8px);
+          transition: all 0.2s ease;
+        }
+        .fullscreen-btn:hover { background: var(--green); transform: scale(1.08); }
+        .project-body { padding: 36px; display: flex; flex-direction: column; justify-content: center; }
+        .project-body h3 { font-size: 1.4rem; margin-bottom: 14px; }
+        .project-body p { color: var(--text-muted); margin-bottom: 18px; }
+        .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag {
+          padding: 6px 14px;
+          background: rgba(34,197,94,0.12);
+          color: var(--green);
+          border-radius: 20px;
+          font-size: 0.82rem;
+          font-weight: 600;
+        }
+
+        /* ============ Contact ============ */
+        .contact-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 22px;
+          max-width: 900px; margin: 0 auto;
+        }
+        .contact-card {
+          padding: 36px 28px;
+          text-align: center;
+          transition: all 0.3s ease;
+          display: block;
+        }
+        .contact-card:hover { transform: translateY(-8px); border-color: var(--green); }
+        .contact-card i {
+          font-size: 2.4rem;
+          background: var(--gradient);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          margin-bottom: 16px;
+        }
+        .contact-card h3 { margin-bottom: 6px; }
+        .contact-card p { color: var(--text-muted); font-size: 0.92rem; word-break: break-all; }
+
+        /* ============ Footer ============ */
+        .footer {
+          padding: 36px 0;
+          text-align: center;
+          background: var(--dark);
+          color: #cbd5e1;
+        }
+        .footer p { font-weight: 600; }
+        .footer-sub { font-weight: 400; font-size: 0.88rem; opacity: 0.7; margin-top: 4px; }
+
+        /* ============ Back to top ============ */
+        .back-to-top {
+          position: fixed;
+          bottom: 24px; right: 24px;
+          width: 48px; height: 48px;
+          border-radius: 50%;
+          background: var(--gradient);
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          box-shadow: 0 8px 24px rgba(22,163,74,0.4);
+          opacity: 0; visibility: hidden;
+          transform: translateY(20px);
+          transition: all 0.3s ease;
+          z-index: 99;
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { transform: translateY(-4px) scale(1.05); }
+
+        /* ============ Lightbox ============ */
+        .lightbox {
+          position: fixed; inset: 0;
+          background: rgba(0,0,0,0.92);
+          display: none;
+          place-items: center;
+          z-index: 200;
+          padding: 24px;
+        }
+        .lightbox.show { display: grid; animation: fade 0.25s ease; }
+        .lightbox img { max-width: 95%; max-height: 90vh; border-radius: 12px; }
+        .lightbox-close {
+          position: absolute; top: 20px; right: 20px;
+          width: 48px; height: 48px;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.15);
+          color: #fff; border: none; cursor: pointer;
+          font-size: 1.4rem;
+        }
+        @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+        /* ============ Reveal animation ============ */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ============ Responsive ============ */
+        @media (max-width: 900px) {
+          .project { grid-template-columns: 1fr; }
+          .project-image { min-height: 260px; }
+        }
+        @media (max-width: 768px) {
+          .menu-btn { display: grid; }
+          .nav-links {
+            position: fixed;
+            top: 72px; left: 0; right: 0;
+            flex-direction: column;
+            background: var(--bg-alt);
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            gap: 4px;
+            transform: translateY(-120%);
+            transition: transform 0.3s ease;
+            box-shadow: var(--shadow);
+          }
+          .nav-links.open { transform: translateY(0); }
+          .nav-link { width: 100%; padding: 12px 16px; }
+          .logo-text { display: none; }
+          .section { padding: 70px 0; }
+        }
+        @media (max-width: 480px) {
+          .hero-cta { flex-direction: column; align-items: stretch; }
+          .btn { justify-content: center; }
+          .timeline { padding-left: 20px; }
+          .timeline-dot { left: -22px; width: 30px; height: 30px; font-size: 0.85rem; }
+          .timeline-card { margin-left: 14px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+<!-- Scroll progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Navbar -->
+<header class="navbar" id="navbar">
+    <div class="container nav-inner">
+        <a href="#home" class="logo">
+            <span class="logo-mark">PS</span>
+            <span class="logo-text">Phạm Ngọc Sơn</span>
+        </a>
+        <nav class="nav-links" id="navLinks">
+            <a href="#home" class="nav-link active">Trang chủ</a>
+            <a href="#about" class="nav-link">Giới thiệu</a>
+            <a href="#portfolio" class="nav-link">Portfolio học tập</a>
+            <a href="#skills" class="nav-link">Kỹ năng</a>
+            <a href="#project" class="nav-link">Dự án</a>
+            <a href="#summary" class="nav-link">Tổng kết</a>
+            <a href="#contact" class="nav-link">Liên hệ</a>
+        </nav>
+        <div class="nav-actions">
+            <button id="themeToggle" class="icon-btn" aria-label="Chuyển chế độ sáng/tối">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <button id="menuToggle" class="icon-btn menu-btn" aria-label="Mở menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Hero -->
+<section id="home" class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-inner">
+        <div class="avatar reveal">
+            <div class="avatar-ring"></div>
+            <img src="https://api.dicebear.com/7.x/initials/svg?seed=Pham Ngoc Son&backgroundColor=16a34a&textColor=ffffff" alt="Phạm Ngọc Sơn" />
+        </div>
+        <h1 class="hero-title reveal">PHẠM NGỌC SƠN</h1>
+        <p class="hero-sub reveal">Sinh viên Công nghệ thông tin</p>
+        <p class="hero-desc reveal">Portfolio môn Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo</p>
+        <div class="hero-cta reveal">
+            <a href="#portfolio" class="btn btn-primary"><i class="fa-solid fa-folder-open"></i> Xem Portfolio</a>
+            <a href="#contact" class="btn btn-ghost"><i class="fa-solid fa-paper-plane"></i> Liên hệ</a>
+        </div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+        <span></span>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about" class="section">
+    <div class="container">
+        <h2 class="section-title reveal">Giới thiệu bản thân</h2>
+        <p class="section-sub reveal">Một chút về tôi và hành trình học tập.</p>
+
+        <div class="about-grid">
+            <div class="glass card reveal">
+                <div class="card-icon"><i class="fa-solid fa-user"></i></div>
+                <h3>Xin chào!</h3>
+                <p>Tôi là <strong>Phạm Ngọc Sơn</strong>, sinh viên ngành Công nghệ thông tin tại Đại học Công nghệ. Tôi yêu thích công nghệ, trí tuệ nhân tạo và phát triển phần mềm.</p>
+            </div>
+            <div class="glass card reveal">
+                <div class="card-icon"><i class="fa-solid fa-heart"></i></div>
+                <h3>Sở thích</h3>
+                <ul>
+                    <li>Lập trình</li>
+                    <li>Tìm hiểu AI</li>
+                    <li>Đọc sách công nghệ</li>
+                    <li>Thiết kế nội dung số</li>
+                </ul>
+            </div>
+            <div class="glass card reveal">
+                <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h3>Mục tiêu học tập</h3>
+                <ul>
+                    <li>Nắm vững nền tảng CNTT</li>
+                    <li>Thành thạo công cụ AI</li>
+                    <li>Phát triển kỹ năng làm việc nhóm</li>
+                </ul>
+            </div>
+            <div class="glass card reveal">
+                <div class="card-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <h3>Mục tiêu nghề nghiệp</h3>
+                <ul>
+                    <li>Trở thành Software Engineer</li>
+                    <li>Ứng dụng AI vào thực tiễn</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Timeline -->
+<section id="portfolio" class="section section-alt">
+    <div class="container">
+        <h2 class="section-title reveal">Portfolio học tập</h2>
+        <p class="section-sub reveal">6 bài thực hành trong môn học.</p>
+
+        <div class="timeline">
+            <!-- Bài 1 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot">1</div>
+                <div class="glass timeline-card">
+                    <h3>Thao tác cơ bản với tệp tin và thư mục</h3>
+                    <p><strong>Mục tiêu:</strong> Làm quen với quản lý dữ liệu số.</p>
+                    <p><strong>Nội dung:</strong> Tạo, sao chép, di chuyển và tổ chức thư mục.</p>
+                    <p><strong>Kết quả:</strong> Thành thạo thao tác quản lý tệp.</p>
+                    <a href="pdf/baocao_tuan1.pdf" class="btn-link"><i class="fa-solid fa-eye"></i> Xem minh chứng</a>
+                </div>
+            </div>
+            <!-- Bài 2 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot">2</div>
+                <div class="glass timeline-card">
+                    <h3>Tìm kiếm và đánh giá thông tin học thuật</h3>
+                    <p><strong>Mục tiêu:</strong> Nâng cao kỹ năng tìm kiếm thông tin.</p>
+                    <p><strong>Nội dung:</strong> Sử dụng Google Scholar và nguồn học thuật.</p>
+                    <p><strong>Kết quả:</strong> Biết đánh giá độ tin cậy của tài liệu.</p>
+                    <a href="pdf/baocao_tuan2.pdf" class="btn-link"><i class="fa-solid fa-eye"></i> Xem minh chứng</a>
+                </div>
+            </div>
+            <!-- Bài 3 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot">3</div>
+                <div class="glass timeline-card">
+                    <h3>Viết Prompt hiệu quả cho AI</h3>
+                    <p><strong>Mục tiêu:</strong> Tăng chất lượng đầu ra của AI.</p>
+                    <p><strong>Nội dung:</strong> Thực hành Prompt Engineering.</p>
+                    <p><strong>Kết quả:</strong> Tạo được prompt rõ ràng và hiệu quả.</p>
+                    <a href="pdf/baocao_tuan3.pdf" class="btn-link"><i class="fa-solid fa-eye"></i> Xem minh chứng</a>
+                </div>
+            </div>
+            <!-- Bài 4 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot">4</div>
+                <div class="glass timeline-card">
+                    <h3>Sử dụng công cụ hợp tác trực tuyến</h3>
+                    <p><strong>Mục tiêu:</strong> Làm việc nhóm hiệu quả.</p>
+                    <p><strong>Nội dung:</strong> Sử dụng Google Docs, Drive và Meet.</p>
+                    <p><strong>Kết quả:</strong> Tăng khả năng cộng tác trực tuyến.</p>
+                    <a href="pdf/baocao_tuan4.pdf" class="btn-link"><i class="fa-solid fa-eye"></i> Xem minh chứng</a>
+                </div>
+            </div>
+            <!-- Bài 5 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot">5</div>
+                <div class="glass timeline-card">
+                    <h3>Sử dụng AI tạo sinh hỗ trợ sáng tạo nội dung</h3>
+                    <p><strong>Mục tiêu:</strong> Tạo nội dung số bằng AI.</p>
+                    <p><strong>Nội dung:</strong> Thiết kế infographic và tài liệu học tập.</p>
+                    <p><strong>Kết quả:</strong> Hoàn thành sản phẩm sáng tạo bằng AI.</p>
+                    <a href="pdf/baocao_tuan5.pdf" class="btn-link"><i class="fa-solid fa-eye"></i> Xem minh chứng</a>
+                </div>
+            </div>
+            <!-- Bài 6 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot">6</div>
+                <div class="glass timeline-card">
+                    <h3>Sử dụng AI có trách nhiệm</h3>
+                    <p><strong>Mục tiêu:</strong> Hiểu đạo đức trong AI.</p>
+                    <p><strong>Nội dung:</strong> Tìm hiểu quyền riêng tư và bản quyền.</p>
+                    <p><strong>Kết quả:</strong> Biết sử dụng AI đúng quy định.</p>
+                    <a href="pdf/baocao_tuan6.pdf" class="btn-link"><i class="fa-solid fa-eye"></i> Xem minh chứng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="section">
+    <div class="container">
+        <h2 class="section-title reveal">Kỹ năng đạt được</h2>
+        <p class="section-sub reveal">Các kỹ năng được rèn luyện qua môn học.</p>
+
+        <div class="skills-grid">
+            <div class="skill reveal" data-skill="90"><div class="skill-head"><span>AI Tools</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill"></div></div></div>
+            <div class="skill reveal" data-skill="85"><div class="skill-head"><span>Prompt Engineering</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill"></div></div></div>
+            <div class="skill reveal" data-skill="88"><div class="skill-head"><span>Information Search</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill"></div></div></div>
+            <div class="skill reveal" data-skill="80"><div class="skill-head"><span>Digital Collaboration</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill"></div></div></div>
+            <div class="skill reveal" data-skill="92"><div class="skill-head"><span>Content Creation</span><span class="skill-pct">92%</span></div><div class="skill-bar"><div class="skill-fill"></div></div></div>
+            <div class="skill reveal" data-skill="85"><div class="skill-head"><span>Academic Integrity</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill"></div></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Project -->
+<section id="project" class="section section-alt">
+    <div class="container">
+        <h2 class="section-title reveal">Dự án nổi bật</h2>
+        <p class="section-sub reveal">Sản phẩm tiêu biểu của môn học.</p>
+
+        <div class="project glass reveal">
+            <div class="project-image" id="projectImage">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80" alt="Infographic Sự phát triển của AI" />
+                <button class="fullscreen-btn" id="fullscreenBtn" aria-label="Xem toàn màn hình"><i class="fa-solid fa-expand"></i></button>
+            </div>
+            <div class="project-body">
+                <h3>Infographic: "Sự phát triển của Trí tuệ nhân tạo"</h3>
+                <p>Dự án sử dụng AI tạo sinh để thiết kế infographic mô tả lịch sử phát triển của AI từ năm 1950 đến nay.</p>
+                <div class="tags">
+                    <span class="tag">AI Generative</span>
+                    <span class="tag">Infographic</span>
+                    <span class="tag">Design</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Summary -->
+<section id="summary" class="section">
+    <div class="container">
+        <h2 class="section-title reveal">Tổng kết</h2>
+        <p class="section-sub reveal">Những điều tôi đã đạt được và rút ra.</p>
+
+        <div class="summary-grid">
+            <div class="glass card reveal">
+                <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3>Kiến thức đạt được</h3>
+                <ul>
+                    <li>Kỹ năng số cơ bản</li>
+                    <li>Tìm kiếm thông tin học thuật</li>
+                    <li>Prompt Engineering</li>
+                    <li>AI Generative Tools</li>
+                </ul>
+            </div>
+            <div class="glass card reveal">
+                <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <h3>Khó khăn</h3>
+                <ul>
+                    <li>Làm quen công cụ mới</li>
+                    <li>Đánh giá độ tin cậy thông tin</li>
+                </ul>
+            </div>
+            <div class="glass card reveal">
+                <div class="card-icon"><i class="fa-solid fa-book"></i></div>
+                <h3>Bài học</h3>
+                <ul>
+                    <li>Luôn kiểm chứng thông tin AI</li>
+                    <li>Tư duy phản biện khi sử dụng AI</li>
+                </ul>
+            </div>
+            <div class="glass card reveal">
+                <div class="card-icon"><i class="fa-solid fa-comment"></i></div>
+                <h3>Cảm nhận</h3>
+                <p>Môn học giúp tôi hiểu rõ hơn về công nghệ số và cách ứng dụng AI hiệu quả trong học tập.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="section section-alt">
+    <div class="container">
+        <h2 class="section-title reveal">Liên hệ</h2>
+        <p class="section-sub reveal">Hãy kết nối với tôi!</p>
+
+        <div class="contact-grid">
+            <a class="glass contact-card reveal" href="mailto:son@example.com">
+                <i class="fa-solid fa-envelope"></i>
+                <h3>Email</h3>
+                <p>son@example.com</p>
+            </a>
+            <a class="glass contact-card reveal" href="https://github.com/yourgithub" target="_blank" rel="noopener">
+                <i class="fa-brands fa-github"></i>
+                <h3>GitHub</h3>
+                <p>github.com/yourgithub</p>
+            </a>
+            <a class="glass contact-card reveal" href="https://facebook.com/yourfacebook" target="_blank" rel="noopener">
+                <i class="fa-brands fa-facebook"></i>
+                <h3>Facebook</h3>
+                <p>facebook.com/yourfacebook</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 Phạm Ngọc Sơn</p>
+        <p class="footer-sub">Portfolio môn Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo</p>
+    </div>
+</footer>
+
+<!-- Back to top -->
+<button id="backToTop" class="back-to-top" aria-label="Lên đầu trang">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
+    <img src="" alt="Xem ảnh" id="lightboxImg" />
+</div>
+
+<script>
+    // ============ Theme Toggle ============
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateThemeIcon(next);
+    });
+
+    function updateThemeIcon(theme) {
+      themeIcon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+
+    // ============ Mobile Menu ============
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const icon = menuToggle.querySelector('i');
+      icon.className = navLinks.classList.contains('open') ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    });
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.querySelector('i').className = 'fa-solid fa-bars';
+      });
+    });
+
+    // ============ Scroll Progress + Navbar + Back to Top ============
+    const scrollProgress = document.getElementById('scrollProgress');
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = (scrollTop / docHeight) * 100;
+      scrollProgress.style.width = pct + '%';
+
+      navbar.classList.toggle('scrolled', scrollTop > 20);
+      backToTop.classList.toggle('show', scrollTop > 400);
+
+      updateActiveLink();
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ============ Active Nav Link ============
+    const sections = document.querySelectorAll('section[id]');
+    const navLinksList = document.querySelectorAll('.nav-link');
+    function updateActiveLink() {
+      const scrollPos = window.scrollY + 120;
+      sections.forEach(section => {
+        if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+          const id = section.getAttribute('id');
+          navLinksList.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }
+
+    // ============ Reveal on Scroll ============
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Skill bar animation
+          if (entry.target.classList.contains('skill')) {
+            const pct = entry.target.dataset.skill;
+            const fill = entry.target.querySelector('.skill-fill');
+            setTimeout(() => { fill.style.width = pct + '%'; }, 200);
+          }
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ============ Lightbox ============
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const projectImage = document.getElementById('projectImage');
+
+    function openLightbox() {
+      const img = projectImage.querySelector('img');
+      lightboxImg.src = img.src;
+      lightbox.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    fullscreenBtn.addEventListener('click', openLightbox);
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+    // Initial active link
+    updateActiveLink();
+</script>
+</body>
+</html>
